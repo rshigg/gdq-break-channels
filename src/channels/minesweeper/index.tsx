@@ -6,7 +6,7 @@ import { ChannelProps, registerChannel } from '../channels';
 import { useListenFor, useReplicant } from 'use-nodecg';
 import type { Event, FormattedDonation, Total } from '@gdq/types/tracker';
 
-import { Face, type FaceType } from './Face';
+import { Face, FaceType } from './Face';
 import { Tile, TileData } from './Tile';
 import { TILE_DIMENSION, GRID_COLUMNS, GRID_ROWS, TILE_MAP, MINE_CHANCE, MIN_REVEAL_DONATION } from './constants';
 import { createTileCluster, getTileRevealThreshold, random, randomFromArray, splitTileIndex } from './utils';
@@ -150,10 +150,10 @@ export function Minesweeper(props: ChannelProps) {
 	const [gridState, dispatch] = useReducer(gridReducer, cloneDeep(stateReplicant.value!));
 
 	const [face, setFace] = useState<FaceType>('smile');
-	const faceChangeTimeout = useRef<NodeJS.Timeout>();
+	const faceChangeTimeout = useRef<ReturnType<typeof setTimeout>>();
 
 	function changeFace(face: FaceType) {
-		clearTimeout(faceChangeTimeout.current);
+		clearTimeout(faceChangeTimeout.current!);
 		setFace(face);
 		faceChangeTimeout.current = setTimeout(() => setFace('smile'), 2_500);
 	}
@@ -179,7 +179,7 @@ export function Minesweeper(props: ChannelProps) {
 		}
 	}, [gridState.nonMines]);
 
-	const flagTimeoutRef = useRef<NodeJS.Timeout>();
+	const flagTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
 	useEffect(() => {
 		function flagTiles(timeoutMS: number) {
 			// Add a question mark every 5-10 seconds
@@ -193,7 +193,7 @@ export function Minesweeper(props: ChannelProps) {
 		flagTiles(5_000);
 
 		return () => {
-			clearTimeout(flagTimeoutRef.current);
+			clearTimeout(flagTimeoutRef.current!);
 		};
 	}, []);
 
@@ -284,11 +284,11 @@ const LCDContainer = styled.div`
 
 const LCDText = styled.div`
 	font-family: minesweeper;
-	font-size: 32px;
+	font-size: 38px;
 	text-transform: uppercase;
-	color: #ea3323;
+	color: hsl(4.82, 82.57%, 58%);
 	background: #000;
 	border: 1px solid;
 	border-color: #808080 #fff #fff #808080;
-	padding: 1px;
+	padding: 1px 4px;
 `;
