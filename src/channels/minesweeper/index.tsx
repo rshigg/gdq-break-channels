@@ -284,11 +284,11 @@ const LCDContainer = styled.div`
 
 const LCDText = styled.div`
 	font-family: minesweeper;
-	font-size: 38px;
+	font-size: 32px;
 	text-transform: uppercase;
-	color: hsl(4.82, 82.57%, 58%);
+	color: #ea3323;
 	background: #000;
 	border: 1px solid;
 	border-color: #808080 #fff #fff #808080;
-	padding: 1px 4px;
+	padding: 1px;
 `;

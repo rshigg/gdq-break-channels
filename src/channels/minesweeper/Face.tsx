@@ -18,7 +18,7 @@ export function Face({ face }: FaceProps) {
 	return (
 		<div
 			css={css`
-				transform: scale(1.5);
+				transform: scale(1.25);
 				width: ${FACE_DIMENSION}px;
 				height: ${FACE_DIMENSION}px;
 				background: url(${faces}) no-repeat;
