@@ -17,5 +17,8 @@ import './ff-shop';
 import './papers-please';
 import './minesweeper';
 import './qwop';
+import './laser-sunset';
+import './here-comes-niko';
+import './pinball';
 
 export * from './channels';
